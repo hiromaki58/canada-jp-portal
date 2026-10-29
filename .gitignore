@@ -1,0 +1,54 @@
+# Environment
+HELP.md
+.env
+
+# CI/CD
+*.aws.yml
+docker-compose.yml
+task-definition.json
+
+# extensions
+*.csv
+*.class
+*.jar
+*.lst
+*.jar.*
+!**/gradle/wrapper/*
+
+# STS
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+# IntelliJ
+.idea/
+*.iml
+
+# Remote Node Info
+entrypoint.sh
+*.pem
+
+# Gradle
+.gradle/
+build/
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Local reference material (design mockups, old Dockerfiles); never pushed
+/reference/
+
+# Terraform (.terraform.lock.hcl is committed to pin provider versions)
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+crash.log
