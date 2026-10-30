@@ -50,8 +50,3 @@ data "aws_ecr_repository" "backend" {
 data "aws_ecr_repository" "frontend" {
   name = "cross-border-payment-frontend"
 }
-
-# ECS 用に最適化された最新の Amazon Linux 2023 の AMI
-data "aws_ssm_parameter" "ecs_ami" {
-  name = "/aws/service/ecs/optimized-ami/amazon-linux-2023/recommended/image_id"
-}

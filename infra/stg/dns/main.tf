@@ -29,12 +29,12 @@ resource "aws_acm_certificate" "main" {
 
 # __generated__ by Terraform
 resource "aws_route53_record" "cert_validation" {
-  health_check_id                  = null
-  name                             = "_f49308e680897902d1347a0c3f015008.hiromaki58.com"
-  records                          = ["_3ebbfd73cb5b08bb2ed18caccc66acb1.wzccmgtwzk.acm-validations.aws."]
-  ttl                              = 300
-  type                             = "CNAME"
-  zone_id                          = aws_route53_zone.main.zone_id
+  health_check_id = null
+  name            = "_f49308e680897902d1347a0c3f015008.hiromaki58.com"
+  records         = ["_3ebbfd73cb5b08bb2ed18caccc66acb1.wzccmgtwzk.acm-validations.aws."]
+  ttl             = 300
+  type            = "CNAME"
+  zone_id         = aws_route53_zone.main.zone_id
 }
 
 # __generated__ by Terraform from "Z0677376EIKXKR6ZPH3Z"
