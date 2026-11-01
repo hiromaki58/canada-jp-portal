@@ -7,17 +7,17 @@ output "app_secret_arn" {
 }
 
 output "aws_account_id" {
-  description = "CircleCI の AWS_ACCOUNT_ID"
+  description = "AWS アカウント ID（確認用）"
   value       = data.aws_caller_identity.current.account_id
 }
 
 output "circleci_access_key_id" {
-  description = "CircleCI の AWS_ACCESS_KEY_ID"
+  description = "CircleCI のプロジェクト環境変数 AWS_ACCESS_KEY_ID"
   value       = aws_iam_access_key.circleci.id
 }
 
 output "circleci_secret_access_key" {
-  description = "CircleCI の AWS_SECRET_ACCESS_KEY（terraform output -raw circleci_secret_access_key で表示）"
+  description = "CircleCI のプロジェクト環境変数 AWS_SECRET_ACCESS_KEY（terraform output -raw circleci_secret_access_key で表示）"
   value       = aws_iam_access_key.circleci.secret
   sensitive   = true
 }

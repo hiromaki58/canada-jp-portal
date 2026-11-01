@@ -8,7 +8,7 @@ version: 2.1
 # AWS credentials (never commit them). Each deploy job checks that it runs as the expected IAM user before
 # pushing anything, so a missing or wrong credential stops the job instead of deploying to the other environment.
 #   Staging:    project environment variables (Project Settings > Environment Variables)
-#                 AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY  IAM user cross-border-payment-circleci-deploy
+#                 AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY  IAM user canada-jp-portal-stg-circleci-deploy
 #                 (infra/stg/shared: circleci_access_key_id, circleci_secret_access_key)
 #   Production: context "canada-jp-portal-prod" (Organization Settings > Contexts; restrict who may use it)
 #                 AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY  IAM user canada-jp-portal-prod-circleci-deploy
@@ -244,12 +244,12 @@ workflows:
             # Staging (hiromaki58.com): infra/stg; credentials from the project environment variables
             -   deploy:
                     name: deploy-stg
-                    deploy_user: cross-border-payment-circleci-deploy
-                    backend_repository: cross-border-payment-backend
-                    frontend_repository: cross-border-payment-frontend
-                    ecs_cluster: cross-border-payment
-                    backend_service: cross-border-payment-backend
-                    frontend_service: cross-border-payment-frontend
+                    deploy_user: canada-jp-portal-stg-circleci-deploy
+                    backend_repository: canada-jp-portal-stg-backend
+                    frontend_repository: canada-jp-portal-stg-frontend
+                    ecs_cluster: canada-jp-portal-stg
+                    backend_service: canada-jp-portal-stg-backend
+                    frontend_service: canada-jp-portal-stg-frontend
                     requires:
                         - build-images
                     filters:

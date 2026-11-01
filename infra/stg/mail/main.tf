@@ -42,7 +42,7 @@ resource "aws_sesv2_email_identity" "test_recipient" {
 
 # ===== SMTP 用の IAM ユーザー =====
 resource "aws_iam_user" "ses_smtp" {
-  name = "cross-border-payment-ses-smtp"
+  name = "canada-jp-portal-stg-ses-smtp"
 }
 
 resource "aws_iam_user_policy" "ses_smtp_send" {
@@ -68,7 +68,7 @@ resource "aws_iam_access_key" "ses_smtp" {
 
 # ===== SMTP 認証情報を Secrets Manager に保存 =====
 resource "aws_secretsmanager_secret" "smtp" {
-  name        = "cross-border-payment-service/smtp"
+  name        = "canada-jp-portal-stg/smtp"
   description = "SES の SMTP 認証情報"
 }
 

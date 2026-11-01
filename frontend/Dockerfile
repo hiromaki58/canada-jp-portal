@@ -7,7 +7,7 @@
 # The load balancer routes "/api" to the backend on the same domain (see src/cmn/Constant.ts),
 # so nginx only serves the static files.
 #
-# Build locally:  docker build -t cross-border-payment-frontend ./frontend
+# Build locally:  docker build -t canada-jp-portal-frontend ./frontend
 
 # ===========================
 # 1. Build stage (Node.js)

@@ -39,7 +39,7 @@ const Footer: React.FC = () => {
                                 <div className="footer-sns">
                                     <ul>
                                         <li><a href="https://www.linkedin.com/in/hiromaki58/">LinkedIn</a></li>
-                                        <li><a href="https://github.com/hiromaki58/cross-border-payment-service">Github</a></li>
+                                        <li><a href="https://github.com/hiromaki58/canada-jp-portal">Github</a></li>
                                     </ul>
                                 </div>
                             </section>

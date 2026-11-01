@@ -4,9 +4,9 @@
 # - CircleCI がデプロイに使う IAM ユーザー
 
 locals {
-  name         = "cross-border-payment"
-  cluster_name = "cross-border-payment"
-  repositories = ["cross-border-payment-backend", "cross-border-payment-frontend"] # .circleci/config.yml と同じ名前
+  name         = "canada-jp-portal-stg"
+  cluster_name = "canada-jp-portal-stg"
+  repositories = ["canada-jp-portal-stg-backend", "canada-jp-portal-stg-frontend"] # .circleci/config.yml と同じ名前
 }
 
 data "aws_caller_identity" "current" {}
@@ -45,7 +45,7 @@ resource "aws_ecr_lifecycle_policy" "app" {
 # ===== アプリ用シークレット（入れ物だけ。値は CLI で入れる） =====
 # 中身は JSON: {"DB_USERNAME": "...", "DB_PASSWORD": "...", "APP_OTP_HMAC_KEY": "..."}
 resource "aws_secretsmanager_secret" "app" {
-  name        = "cross-border-payment-service/app"
+  name        = "canada-jp-portal-stg/app"
   description = "バックエンドの DB 認証情報と OTP 用 HMAC 鍵"
 }
 

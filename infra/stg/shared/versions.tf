@@ -4,8 +4,8 @@ terraform {
     aws = { source = "hashicorp/aws", version = "~> 6.0" }
   }
   backend "s3" {
-    bucket       = "cross-border-payment-service-724775511010"
-    key          = "dev/shared/terraform.tfstate"
+    bucket       = "canada-jp-portal-tfstate-724775511010"
+    key          = "stg/shared/terraform.tfstate"
     region       = "us-east-1"
     use_lockfile = true
     encrypt      = true
@@ -15,6 +15,6 @@ terraform {
 provider "aws" {
   region = "us-east-1"
   default_tags {
-    tags = { Project = "cross-border-payment-service", ManagedBy = "terraform" }
+    tags = { Project = "canada-jp-portal", ManagedBy = "terraform" }
   }
 }

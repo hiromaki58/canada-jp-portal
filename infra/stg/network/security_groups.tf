@@ -1,8 +1,8 @@
 # ===== ALB 用の SG =====
 # インターネットから 80（HTTP → HTTPS へリダイレクト）と 443 を受け付ける
 resource "aws_security_group" "alb" {
-  name        = "cross-border-payment-alb"
-  description = "ALB for cross-border-payment-service"
+  name        = "canada-jp-portal-stg-alb"
+  description = "ALB for canada-jp-portal (stg)"
   vpc_id      = aws_vpc.main.id
 
   ingress {
@@ -29,7 +29,13 @@ resource "aws_security_group" "alb" {
   }
 
   tags = {
-    Name = "cross-border-payment-alb"
+    Name = "canada-jp-portal-stg-alb"
+  }
+
+  # 名前を変えると作り直しになる。RDS などの SG から参照されているので、新しい SG を先に作って
+  # 参照を付け替えてから古い SG を削除する
+  lifecycle {
+    create_before_destroy = true
   }
 }
 
@@ -37,8 +43,8 @@ resource "aws_security_group" "alb" {
 # コンテナは bridge モードで動き、ホスト側のポートは自動で割り当てられる（32768〜65535）
 # そのポートへは ALB からの通信だけを許可する
 resource "aws_security_group" "ecs_instances" {
-  name        = "cross-border-payment-ecs-instances"
-  description = "ECS container instances for cross-border-payment-service"
+  name        = "canada-jp-portal-stg-ecs-instances"
+  description = "ECS container instances for canada-jp-portal (stg)"
   vpc_id      = aws_vpc.main.id
 
   ingress {
@@ -58,6 +64,12 @@ resource "aws_security_group" "ecs_instances" {
   }
 
   tags = {
-    Name = "cross-border-payment-ecs-instances"
+    Name = "canada-jp-portal-stg-ecs-instances"
+  }
+
+  # 名前を変えると作り直しになる。RDS などの SG から参照されているので、新しい SG を先に作って
+  # 参照を付け替えてから古い SG を削除する
+  lifecycle {
+    create_before_destroy = true
   }
 }

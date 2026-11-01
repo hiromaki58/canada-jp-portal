@@ -2,8 +2,8 @@
 data "terraform_remote_state" "network" {
   backend = "s3"
   config = {
-    bucket = "cross-border-payment-service-724775511010"
-    key    = "dev/network/terraform.tfstate"
+    bucket = "canada-jp-portal-tfstate-724775511010"
+    key    = "stg/network/terraform.tfstate"
     region = "us-east-1"
   }
 }
@@ -19,7 +19,7 @@ resource "aws_db_subnet_group" "main" {
 
 # ===== RDS for MySQL =====
 resource "aws_db_instance" "main" {
-  identifier     = "cross-border-payment-service-db"
+  identifier     = "canada-jp-portal-stg-db"
   engine         = "mysql"
   engine_version = "8.4.11"
   instance_class = "db.t3.micro"
@@ -55,7 +55,7 @@ resource "aws_db_instance" "main" {
   # 削除時の設定
   deletion_protection       = true  # コンソールなどからの誤削除を防ぐ
   skip_final_snapshot       = false # 削除時に最終スナップショットを残す
-  final_snapshot_identifier = "cross-border-payment-service-db-final"
+  final_snapshot_identifier = "canada-jp-portal-stg-db-final"
 
   # 今回の変更をメンテナンスウィンドウを待たずに反映する（停止は発生しない）
   apply_immediately = false

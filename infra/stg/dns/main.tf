@@ -15,10 +15,10 @@ resource "aws_acm_certificate" "main" {
   region                    = "us-east-1"
   subject_alternative_names = ["hiromaki58.com"]
   tags = {
-    Name = "cross-border-payment-service"
+    Name = "canada-jp-portal-stg"
   }
   tags_all = {
-    Name = "cross-border-payment-service"
+    Name = "canada-jp-portal-stg"
   }
   validation_method = "DNS"
   options {

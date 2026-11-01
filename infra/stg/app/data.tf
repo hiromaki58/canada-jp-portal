@@ -1,6 +1,6 @@
 locals {
-  name         = "cross-border-payment"
-  cluster_name = "cross-border-payment" # shared レイヤーの CircleCI 用ポリシーと同じ名前
+  name         = "canada-jp-portal-stg"
+  cluster_name = "canada-jp-portal-stg" # shared レイヤーの CircleCI 用ポリシーと同じ名前
   domain       = "hiromaki58.com"
   region       = "us-east-1"
 }
@@ -11,8 +11,8 @@ locals {
 data "terraform_remote_state" "network" {
   backend = "s3"
   config = {
-    bucket = "cross-border-payment-service-724775511010"
-    key    = "dev/network/terraform.tfstate"
+    bucket = "canada-jp-portal-tfstate-724775511010"
+    key    = "stg/network/terraform.tfstate"
     region = "us-east-1"
   }
 }
@@ -30,23 +30,23 @@ data "aws_acm_certificate" "main" {
 
 # database レイヤー：RDS のエンドポイント
 data "aws_db_instance" "main" {
-  db_instance_identifier = "cross-border-payment-service-db"
+  db_instance_identifier = "canada-jp-portal-stg-db"
 }
 
 # mail レイヤー：SMTP 認証情報のシークレット
 data "aws_secretsmanager_secret" "smtp" {
-  name = "cross-border-payment-service/smtp"
+  name = "canada-jp-portal-stg/smtp"
 }
 
 # shared レイヤー：アプリ用シークレットと ECR
 data "aws_secretsmanager_secret" "app" {
-  name = "cross-border-payment-service/app"
+  name = "canada-jp-portal-stg/app"
 }
 
 data "aws_ecr_repository" "backend" {
-  name = "cross-border-payment-backend"
+  name = "canada-jp-portal-stg-backend"
 }
 
 data "aws_ecr_repository" "frontend" {
-  name = "cross-border-payment-frontend"
+  name = "canada-jp-portal-stg-frontend"
 }

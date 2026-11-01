@@ -8,7 +8,7 @@
 # SPRING_MAIL_*, ...) are passed as environment variables by the ECS task definition;
 # nothing secret is copied into the image (see .dockerignore).
 #
-# Build locally:  docker build -t cross-border-payment-backend ./backend
+# Build locally:  docker build -t canada-jp-portal-backend ./backend
 
 # =====================================
 # 1) Build stage (JDK 17 + Gradle Wrapper)

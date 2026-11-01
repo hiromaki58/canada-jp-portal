@@ -100,7 +100,7 @@ resource "aws_subnet" "private_1a" {
   map_public_ip_on_launch = false
 
   tags = {
-    Name = "cross-border-payment-private-1a"
+    Name = "canada-jp-portal-private-1a"
   }
 }
 
@@ -135,8 +135,8 @@ resource "aws_security_group" "rds" {
   }
 
   tags = {
-    Name = "Cross-Border-Payment-Service-SG"
-    name = "Cross-Border-Payment-Service"
+    Name = "canada-jp-portal-stg-rds"
+    name = "canada-jp-portal-stg"
   }
 
   lifecycle {
