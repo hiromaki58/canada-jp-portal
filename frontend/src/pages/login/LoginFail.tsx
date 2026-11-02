@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import { ADMIN_PATHS } from "../../cmn/Constant";
 import "../../css/base-pc.css";
 import "../../css/login.css";
 import { Link } from "react-router-dom";
@@ -14,7 +15,7 @@ const LoginFail: React.FC = () => {
                     <section className="sec-cmn-01">
                         <h1 className="sec-cmn-01-fail-in">Login Failure</h1>
                         <p className="sec-cmn-01-detail">The passkey could not be verified. Please try again.</p>
-                        <Link to="/login">Back to login page</Link>
+                        <Link to={ADMIN_PATHS.login}>Back to login page</Link>
                     </section>
                 </div>
             </article>

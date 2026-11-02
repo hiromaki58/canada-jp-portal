@@ -12,6 +12,7 @@ import {
     requestRegistration,
     verifyEmail,
 } from "../../cmn/Registration";
+import { ADMIN_PATHS } from "../../cmn/Constant";
 import "../../css/base-pc.css";
 import "../../css/registration.css";
 
@@ -108,11 +109,11 @@ const RegistrationPage: React.FC = () => {
             }
             const result = await registerPasskey(label.trim());
             if (result === "success") {
-                navigate("/registration/success", { state: RESULT_PAGE_STATE });
+                navigate(ADMIN_PATHS.registrationSuccess, { state: RESULT_PAGE_STATE });
                 return;
             }
             if (result === "rejected" || result === "expired") {
-                navigate("/registration/fail", { state: RESULT_PAGE_STATE });
+                navigate(ADMIN_PATHS.registrationFail, { state: RESULT_PAGE_STATE });
                 return;
             }
             setMessage(MESSAGES[result]);

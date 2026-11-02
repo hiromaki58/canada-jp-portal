@@ -23,11 +23,11 @@ const registerMock = vi.mocked(registerPasskey);
 const renderPage = () =>
     render(
         <AuthProvider>
-            <MemoryRouter initialEntries={["/registration"]}>
+            <MemoryRouter initialEntries={["/mc/registration"]}>
                 <Routes>
-                    <Route path="/registration" element={<RegistrationPage />} />
-                    <Route path="/registration/success" element={<p>success page</p>} />
-                    <Route path="/registration/fail" element={<p>fail page</p>} />
+                    <Route path="/mc/registration" element={<RegistrationPage />} />
+                    <Route path="/mc/registration/success" element={<p>success page</p>} />
+                    <Route path="/mc/registration/fail" element={<p>fail page</p>} />
                 </Routes>
             </MemoryRouter>
         </AuthProvider>

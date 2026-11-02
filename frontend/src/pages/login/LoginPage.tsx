@@ -5,6 +5,7 @@ import Footer from "../../components/Footer";
 import { RESULT_PAGE_STATE } from "../../components/ResultPageGuard";
 import { useAuthProvider } from "../../context/AuthContext";
 import { loginWithPasskey } from "../../cmn/Passkey";
+import { ADMIN_PATHS } from "../../cmn/Constant";
 import "../../css/base-pc.css";
 import "../../css/login.css"
 
@@ -33,11 +34,11 @@ const LoginPage: React.FC = () => {
         const result = await loginWithPasskey();
         if (result === "success") {
             login();
-            navigate("/login/success", { state: RESULT_PAGE_STATE });
+            navigate(ADMIN_PATHS.loginSuccess, { state: RESULT_PAGE_STATE });
             return;
         }
         if (result === "rejected") {
-            navigate("/login/fail", { state: RESULT_PAGE_STATE });
+            navigate(ADMIN_PATHS.loginFail, { state: RESULT_PAGE_STATE });
             return;
         }
         setMessage(MESSAGES[result]);

@@ -9,10 +9,10 @@ const renderAt = (initialEntry: string | { pathname: string; state: unknown }) =
         <AuthProvider>
             <MemoryRouter initialEntries={[initialEntry]}>
                 <Routes>
-                    <Route path="/" element={<p>top page</p>} />
-                    <Route path="/login" element={<p>login page</p>} />
+                    <Route path="/mc" element={<p>top page</p>} />
+                    <Route path="/mc/login" element={<p>login page</p>} />
                     <Route
-                        path="/login/success"
+                        path="/mc/login/success"
                         element={
                             <ResultPageGuard>
                                 <p>result page</p>
@@ -30,25 +30,25 @@ describe("ResultPageGuard", () => {
     });
 
     test("shows the result page after an in-app transition", () => {
-        renderAt({ pathname: "/login/success", state: RESULT_PAGE_STATE });
+        renderAt({ pathname: "/mc/login/success", state: RESULT_PAGE_STATE });
         expect(screen.getByText("result page")).toBeTruthy();
     });
 
     test("redirects direct access to the login page when not logged in", () => {
-        renderAt("/login/success");
+        renderAt("/mc/login/success");
         expect(screen.getByText("login page")).toBeTruthy();
         expect(screen.queryByText("result page")).toBeNull();
     });
 
     test("redirects direct access to the top page when logged in", () => {
         sessionStorage.setItem("isLoggedIn", "true");
-        renderAt("/login/success");
+        renderAt("/mc/login/success");
         expect(screen.getByText("top page")).toBeTruthy();
         expect(screen.queryByText("result page")).toBeNull();
     });
 
     test("redirects when the navigation state is not the expected one", () => {
-        renderAt({ pathname: "/login/success", state: { fromApp: "yes" } });
+        renderAt({ pathname: "/mc/login/success", state: { fromApp: "yes" } });
         expect(screen.getByText("login page")).toBeTruthy();
     });
 });

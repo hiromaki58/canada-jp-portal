@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useAuthProvider } from "../context/AuthContext";
+import { ADMIN_PATHS } from "../cmn/Constant";
 import "../css/base-pc.css";
 
-// Top page.
+// Admin top page (/mc).
 const HomePage: React.FC = () => {
     const { isLoggedIn } = useAuthProvider();
 
@@ -21,7 +22,7 @@ const HomePage: React.FC = () => {
                                 <>
                                     <h3 className="ttl-top-h3">Log in with a passkey to send money abroad</h3>
                                     <div className="box-top-login">
-                                        <Link className="btn-top-login" to="/login">Go to login page</Link>
+                                        <Link className="btn-top-login" to={ADMIN_PATHS.login}>Go to login page</Link>
                                     </div>
                                 </>
                             )}

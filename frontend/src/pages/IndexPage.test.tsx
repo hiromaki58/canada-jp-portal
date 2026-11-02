@@ -23,7 +23,7 @@ describe("HomePage", () => {
 
         expect(screen.getByRole("heading", { name: "Cross-Border Payment Service" })).toBeInTheDocument();
         expect(screen.getByRole("heading", { name: /Log in with a passkey/ })).toBeInTheDocument();
-        expect(screen.getByRole("link", { name: "Go to login page" })).toHaveAttribute("href", "/login");
+        expect(screen.getByRole("link", { name: "Go to login page" })).toHaveAttribute("href", "/mc/login");
     });
 
     test("does not show the login prompt after login", () => {

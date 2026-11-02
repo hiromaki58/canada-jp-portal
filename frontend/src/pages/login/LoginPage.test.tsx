@@ -14,11 +14,11 @@ const loginMock = vi.mocked(loginWithPasskey);
 const renderPage = () =>
     render(
         <AuthProvider>
-            <MemoryRouter initialEntries={["/login"]}>
+            <MemoryRouter initialEntries={["/mc/login"]}>
                 <Routes>
-                    <Route path="/login" element={<LoginPage />} />
-                    <Route path="/login/success" element={<p>success page</p>} />
-                    <Route path="/login/fail" element={<p>fail page</p>} />
+                    <Route path="/mc/login" element={<LoginPage />} />
+                    <Route path="/mc/login/success" element={<p>success page</p>} />
+                    <Route path="/mc/login/fail" element={<p>fail page</p>} />
                 </Routes>
             </MemoryRouter>
         </AuthProvider>
