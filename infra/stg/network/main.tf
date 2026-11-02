@@ -110,11 +110,14 @@ resource "aws_route_table_association" "private_1a" {
 }
 
 # ===== セキュリティグループ =====
-# 旧 RDS 用の SG（WebGame-EKS-RDS-SG）は定義を消したので、apply すると削除される。
-# 削除が済んだら、rds_new を moved で aws_security_group.rds に移す
-# （旧 SG が state に残っている間に移すと、移動できずに rds_new の削除が計画されるため、apply を分ける）
+# 旧 RDS 用の SG（WebGame-EKS-RDS-SG）を削除したあと、rds_new として作った SG を元のアドレスに戻した
+moved {
+  from = aws_security_group.rds_new
+  to   = aws_security_group.rds
+}
+
 # RDS 用の SG：ステージングの ECS インスタンスからの MySQL だけを受け付ける
-resource "aws_security_group" "rds_new" {
+resource "aws_security_group" "rds" {
   name        = "canada-jp-portal-stg-rds"
   description = "RDS for canada-jp-portal (stg)"
   vpc_id      = aws_vpc.main.id
