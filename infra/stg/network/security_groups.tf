@@ -30,6 +30,7 @@ resource "aws_security_group" "alb" {
 
   tags = {
     Name = "canada-jp-portal-stg-alb"
+    name = "canada-jp-portal-stg"
   }
 
   # 名前を変えると作り直しになる。RDS などの SG から参照されているので、新しい SG を先に作って
@@ -65,6 +66,7 @@ resource "aws_security_group" "ecs_instances" {
 
   tags = {
     Name = "canada-jp-portal-stg-ecs-instances"
+    name = "canada-jp-portal-stg"
   }
 
   # 名前を変えると作り直しになる。RDS などの SG から参照されているので、新しい SG を先に作って
