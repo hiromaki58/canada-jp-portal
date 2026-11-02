@@ -45,6 +45,17 @@ resource "aws_launch_template" "ecs" {
       ManagedBy = "terraform"
     }
   }
+
+  # スポットの差し替えでインスタンスが新しくなっても、ネットワークインターフェースに同じタグが付くようにする
+  tag_specifications {
+    resource_type = "network-interface"
+    tags = {
+      Name      = "${var.name}-ecs-instance-eni"
+      name      = var.name
+      Project   = var.project_tag
+      ManagedBy = "terraform"
+    }
+  }
 }
 
 resource "aws_autoscaling_group" "ecs" {
