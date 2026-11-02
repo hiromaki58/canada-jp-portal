@@ -5,8 +5,8 @@ resource "aws_vpc" "main" {
   enable_dns_support   = true
 
   tags = {
-    Name = "WebGameVpc"
-    name = "WebGame"
+    Name = "canada-jp-portal-stg-vpc"
+    name = "canada-jp-portal"
   }
 
   lifecycle {
@@ -18,8 +18,8 @@ resource "aws_internet_gateway" "main" {
   vpc_id = aws_vpc.main.id
 
   tags = {
-    Name  = "WebGameIgw"
-    group = "WebGame"
+    Name  = "canada-jp-portal-stg-Igw"
+    group = "canada-jp-portal-stg"
   }
 }
 
@@ -31,8 +31,8 @@ resource "aws_subnet" "public_1a" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "WebGamePub02"
-    name = "WebGame"
+    Name = "canada-jp-portal-public-02"
+    name = "canada-jp-portal"
   }
 }
 
@@ -43,8 +43,8 @@ resource "aws_subnet" "public_1b" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "WebGamePub01"
-    name = "WebGame"
+    Name = "canada-jp-portal-public-01"
+    name = "canada-jp-portal"
   }
 }
 
@@ -110,28 +110,21 @@ resource "aws_route_table_association" "private_1a" {
 }
 
 # ===== セキュリティグループ =====
-# RDS に付いている SG（name と description は変えると作り直しになるので変更しない）
-resource "aws_security_group" "rds" {
-  name        = "WebGame-EKS-RDS-SG"
-  description = "Allowing access to MySQL from EKS nodes"
+# 旧 RDS 用の SG（WebGame-EKS-RDS-SG）は定義を消したので、apply すると削除される。
+# 削除が済んだら、rds_new を moved で aws_security_group.rds に移す
+# （旧 SG が state に残っている間に移すと、移動できずに rds_new の削除が計画されるため、apply を分ける）
+# RDS 用の SG：ステージングの ECS インスタンスからの MySQL だけを受け付ける
+resource "aws_security_group" "rds_new" {
+  name        = "canada-jp-portal-stg-rds"
+  description = "RDS for canada-jp-portal (stg)"
   vpc_id      = aws_vpc.main.id
 
   ingress {
-    from_port = 3306
-    to_port   = 3306
-    protocol  = "tcp"
-    security_groups = [
-      "sg-052217c72946c3577",              # WebGameBastionSG
-      "sg-076ea4e2a353bc30d",              # eks-cluster-sg-webgame-cluster
-      aws_security_group.ecs_instances.id, # ECS の EC2 インスタンス（security_groups.tf）
-    ]
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
+    description     = "MySQL from stg ECS instances"
+    from_port       = 3306
+    to_port         = 3306
+    protocol        = "tcp"
+    security_groups = [aws_security_group.ecs_instances.id]
   }
 
   tags = {
